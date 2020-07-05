@@ -8154,7 +8154,10 @@ if (navigator.getUserMedia) {
                     event.preventDefault();
                     document.getElementById("send").click();
                 } else {
-                    peer.send(`info:${username}:is typing.....`);
+                    let message = document.getElementById("message").value;
+                    if (message !== "") {
+                        peer.send(`info:${username}:is typing.....`);
+                    }
                 }
                 // createMessage(`info:${username}:is typing.....`, 1);
             })
@@ -8291,6 +8294,9 @@ if (navigator.getUserMedia) {
             </div>`;
                 document.getElementById("info-row").innerHTML += msgBox;
             }
+            var objDiv = document.getElementById("message-container");
+            objDiv.scrollTop = objDiv.scrollHeight;
+            // console.log(objDiv.scrollTop, objDiv.scrollHeight)
         }
 
     }).catch(function(err) { console.log(err) });
