@@ -5,15 +5,15 @@ let client = {};
 let video = document.getElementById('myVideo');
 let count = 0;
 
-function hasUserMedia() {
-    //check if the browser supports the WebRTC 
-    return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia);
-}
+// function hasUserMedia() {
+//     //check if the browser supports the WebRTC 
+//     return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+//         navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia);
+// }
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia;
+if (navigator.getUserMedia) {
 
-if (true || hasUserMedia()) {
-    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia;
     //enabling video and audio channels 
     navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(stream) {
         socket.emit('NewClient', username);
