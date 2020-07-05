@@ -8171,7 +8171,7 @@ if (true || hasUserMedia()) {
             client.gotAnswer = false;
             let peer = InitPeer('init');
             peer.on('signal', function(data) {
-                // console.log("init peer", data);
+                console.log("init peer", data);
                 if (!client.gotAnswer) {
                     socket.emit('Offer', data);
                 }
@@ -8184,7 +8184,7 @@ if (true || hasUserMedia()) {
             // count++;
             let peer = InitPeer('notInit')
             peer.on('signal', (data) => {
-                // console.log("client peer", data);
+                console.log("client peer", data);
                 socket.emit('Answer', data);
             })
             peer.signal(offer);
