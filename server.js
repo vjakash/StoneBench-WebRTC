@@ -26,11 +26,12 @@ io.on('connection', function(socket) {
     socket.on('Offer', SendOffer)
     socket.on('Answer', SendAnswer)
     socket.on('disconnect', function Disconnect() {
-        console.log(peers[socket.id])
-        if (clients > 0) {
+        console.log(peers[socket.id] + " disconnected")
+        if (clients > 0 && peers[socket.id] != null) {
             if (clients <= 2)
                 this.broadcast.emit("Disconnect", peers[socket.id]);
             clients--;
+            delete peers[socket.id];
             console.log("count:" + clients);
         }
     })
