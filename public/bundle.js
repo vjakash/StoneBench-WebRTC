@@ -8234,6 +8234,7 @@ if (true || hasUserMedia()) {
             col.appendChild(video);
             document.getElementById("videos").appendChild(col);
             video.play();
+            video.volume = 1;
             video.addEventListener('click', () => {
                 if (video.volume != 0)
                     video.volume = 0;
