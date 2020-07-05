@@ -8121,14 +8121,14 @@ let count = 0;
 function hasUserMedia() {
     //check if the browser supports the WebRTC 
     return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia);
+        navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia);
 }
 
-if (hasUserMedia()) {
+if (true || hasUserMedia()) {
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia;
+        navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia;
     //enabling video and audio channels 
-    navigator.getUserMedia({ video: true, audio: true }, function(stream) {
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true }, function(stream) {
             socket.emit('NewClient', username);
             video.srcObject = stream;
             video.play();
