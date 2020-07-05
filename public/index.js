@@ -110,7 +110,6 @@ if (navigator.getUserMedia) {
                 <p>${data} Connected</p>
             </div>`;
             console.log(data);
-
         });
 
         async function CreateVideo(stream) {
