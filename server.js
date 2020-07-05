@@ -21,7 +21,7 @@ io.on('connection', function(socket) {
         } else
             this.emit('SessionActive')
         clients++;
-        console.log("count:" + count);
+        console.log("count:" + clients);
     })
     socket.on('Offer', SendOffer)
     socket.on('Answer', SendAnswer)
@@ -31,7 +31,7 @@ io.on('connection', function(socket) {
             if (clients <= 2)
                 this.broadcast.emit("Disconnect", peers[socket.id]);
             clients--;
-            console.log("count:" + count);
+            console.log("count:" + clients);
         }
     })
     socket.on('connectUser', sendUserName)
