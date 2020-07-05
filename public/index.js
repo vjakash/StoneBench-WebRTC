@@ -15,7 +15,7 @@ if (true || hasUserMedia()) {
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
         navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia;
     //enabling video and audio channels 
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(function(stream) {
+    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(stream) {
         socket.emit('NewClient', username);
         video.srcObject = stream;
         video.play();
@@ -58,7 +58,7 @@ if (true || hasUserMedia()) {
             client.gotAnswer = false;
             let peer = InitPeer('init');
             peer.on('signal', function(data) {
-                console.log("init peer", data);
+                // console.log("init peer", data);
                 if (!client.gotAnswer) {
                     socket.emit('Offer', data);
                 }
@@ -71,7 +71,7 @@ if (true || hasUserMedia()) {
             // count++;
             let peer = InitPeer('notInit')
             peer.on('signal', (data) => {
-                console.log("client peer", data);
+                // console.log("client peer", data);
                 socket.emit('Answer', data);
             })
             peer.signal(offer);
@@ -113,15 +113,18 @@ if (true || hasUserMedia()) {
 
         });
 
-        function CreateVideo(stream) {
+        async function CreateVideo(stream) {
             let col = document.createElement("div");
             col.id = "peerVideo";
             col.classList.add("col-lg-6");
             let video = document.createElement('video')
             video.classList.add("video-class");
-            video.srcObject = stream;
             col.appendChild(video);
             document.getElementById("videos").appendChild(col);
+            // let audio = stream.getAudioTracks();
+            // console.log(audio);
+            var mediaStream = new MediaStream(stream);
+            video.srcObject = mediaStream;
             video.play();
             video.volume = 1;
             video.addEventListener('click', () => {
