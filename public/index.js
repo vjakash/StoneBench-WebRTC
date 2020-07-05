@@ -109,6 +109,8 @@ if (true || hasUserMedia()) {
             document.getElementById("messages").innerHTML += `<div class="col-lg-12 info ml-4">
                 <p>${data} Connected</p>
             </div>`;
+            console.log(data);
+
         });
 
         function CreateVideo(stream) {
