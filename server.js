@@ -26,8 +26,8 @@ io.on('connection', function(socket) {
     socket.on('Offer', SendOffer)
     socket.on('Answer', SendAnswer)
     socket.on('disconnect', function Disconnect() {
-        console.log(peers[socket.id] + " disconnected")
-        if (clients > 0 && peers[socket.id] != null) {
+        console.log(peers[socket.id] + " disconnected");
+        if (clients > 0 && (peers[socket.id] != null || peers[socket.id] != undefined)) {
             if (clients <= 2)
                 this.broadcast.emit("Disconnect", peers[socket.id]);
             clients--;
