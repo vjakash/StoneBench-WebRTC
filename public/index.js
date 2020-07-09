@@ -26,7 +26,8 @@ if (navigator.getUserMedia) {
                 username = prompt('Please enter a name to continue');
             }
         } else {
-            socket.emit('NewClient', username);
+            console.log("here username is", username);
+            // socket.emit('NewClient', username);
             video.srcObject = stream;
             video.play();
 
