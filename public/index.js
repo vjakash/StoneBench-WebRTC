@@ -1,4 +1,7 @@
 let username = prompt("What is your name?");
+while (username == '' || username === null) {
+    username = prompt('Please enter a name to continue');
+}
 let Peer = require('simple-peer');
 let socket = io();
 let client = {};
