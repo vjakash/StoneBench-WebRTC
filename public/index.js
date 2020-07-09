@@ -20,10 +20,16 @@ if (navigator.getUserMedia) {
 
     //enabling video and audio channels 
     navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(stream) {
-        socket.emit('NewClient', username);
-        video.srcObject = stream;
-        video.play();
+        if (username === '' || username === null || username === undefined) {
+            while (username === '' || username === null || username === undefined) {
+                username = prompt('Please enter a name to continue');
+            }
+        } else {
+            socket.emit('NewClient', username);
+            video.srcObject = stream;
+            video.play();
 
+        }
         //used to initialize a peer
         function InitPeer(type) {
             let peer = new Peer({ initiator: (type == 'init') ? true : false, stream: stream, trickle: false });
