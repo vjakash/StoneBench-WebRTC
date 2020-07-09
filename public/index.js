@@ -21,6 +21,7 @@ if (navigator.getUserMedia) {
     //enabling video and audio channels 
     navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(stream) {
         if (username === '' || username === null || username === undefined) {
+            console.log("here username is", username);
             while (username === '' || username === null || username === undefined) {
                 username = prompt('Please enter a name to continue');
             }
