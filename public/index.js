@@ -1,6 +1,6 @@
 let username = '';
 username = prompt("What is your name?");
-while (username === '' || username === null) {
+while (username === '' || username === null || username === undefined) {
     username = prompt('Please enter a name to continue');
 }
 let Peer = require('simple-peer');
