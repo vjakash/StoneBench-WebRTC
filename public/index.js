@@ -9,13 +9,13 @@ let client = {};
 let video = document.getElementById('myVideo');
 let count = 0;
 
-// function hasUserMedia() {
-//     //check if the browser supports the WebRTC 
-//     return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-//         navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia);
-// }
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-    navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia;
+function hasUserMedia() {
+    //check if the browser supports the WebRTC 
+    return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia);
+}
+// navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+//     navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia;
 if (navigator.getUserMedia) {
 
     //enabling video and audio channels 
@@ -27,7 +27,7 @@ if (navigator.getUserMedia) {
             }
         } else {
             console.log("here username is", username);
-            // socket.emit('NewClient', username);
+            socket.emit('NewClient', username);
             video.srcObject = stream;
             video.play();
 
@@ -198,7 +198,7 @@ if (navigator.getUserMedia) {
             // console.log(objDiv.scrollTop, objDiv.scrollHeight)
         }
 
-    }).catch(function(err) { console.log(err) });
+    }).catch(function(err) { alert(err) });
 
 } else {
     alert("WebRTC is not supported");
