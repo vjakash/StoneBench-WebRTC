@@ -12,6 +12,14 @@
     border-radius: 10px;
 }
 
+.videoElementMirrored {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    /* Safari and Chrome */
+    -moz-transform: rotateY(180deg);
+    /* Firefox */
+}
+
 body {
     outline: none !important;
 }

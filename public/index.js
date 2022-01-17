@@ -133,6 +133,7 @@ if (navigator.getUserMedia) {
             col.classList.add("col-lg-6");
             let video = document.createElement('video')
             video.classList.add("video-class");
+            video.classList.add("videoElementMirrored");
             col.appendChild(video);
             document.getElementById("videos").appendChild(col);
             // let audio = stream.getAudioTracks();
